@@ -5,7 +5,7 @@
 #include "../../sdbf/sdbf_defines.h"
 #include <stdint.h>
 #include <stdio.h>
-
+#define SWIG_PYTHON_STRICT_BYTE_CHAR
 %}
 
 #define KB 1024
