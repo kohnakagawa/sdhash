@@ -1,0 +1,16 @@
+__pycache__
+sdbf_wrap.cxx
+sdbf_class.py
+sdhash
+*.so
+*.o
+*.a
+external/b2
+external/bin.v2/
+external/bjam
+external/bootstrap.log
+external/project-config.jam
+external/project-config.jam.1
+external/stage/
+external/tools/build/v2/engine/bin.linuxx86_64/
+external/tools/build/v2/engine/bootstrap/
