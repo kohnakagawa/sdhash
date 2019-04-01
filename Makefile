@@ -5,6 +5,7 @@ PREFIX=$(DESTDIR)/usr/local
 INSTDIR=$(PREFIX)/bin
 MANDIR=$(PREFIX)/share/man/man1
 PYDIST_DIR=$(shell python3 -c 'import site; print(site.getsitepackages()[0])')
+PY_VERSION=$(shell python3 -c 'import platform; print(platform.python_version()[0:3])')
 
 SDBF_SRC = sdbf/sdbf_class.cc sdbf/sdbf_core.cc sdbf/map_file.cc sdbf/entr64.cc sdbf/base64.cc sdbf/bf_utils.cc sdbf/error.cc sdbf/sdbf_conf.cc sdbf/sdbf_set.cc base64/modp_b64.cc sdbf/bloom_filter.cc lz4/lz4.cc sdbf/bloom_vector.cc sdbf/blooms.pb.cc
 
@@ -71,10 +72,10 @@ swig-win-py: boost swig/python/sdbf_wrap.o swig/python/_sdbf_class.dll
 
 swig/python/sdbf_wrap.o: sdbf.i $(LIBSDBF)
 	swig -c++ -python swig/python/sdbf.i
-	g++ -std=c++0x -fPIC -c swig/python/sdbf_wrap.cxx -o swig/python/sdbf_wrap.o -I/usr/include/python3.5
+	g++ -std=c++0x -fPIC -c swig/python/sdbf_wrap.cxx -o swig/python/sdbf_wrap.o -I/usr/include/python$(PY_VERSION)
 
 swig/python/_sdbf_class.so: swig/python/sdbf_wrap.o $(LIBSDBF)
-	g++ -shared swig/python/sdbf_wrap.o -fopenmp -L./external/stage/lib -Wl,--whole-archive -lboost_system -lboost_filesystem -lboost_thread -Wl,--no-whole-archive -lpython3.5m libsdbf.a -o swig/python/_sdbf_class.so -lcrypto -lpthread 
+	g++ -shared swig/python/sdbf_wrap.o -fopenmp -L./external/stage/lib -Wl,--whole-archive -lboost_system -lboost_filesystem -lboost_thread -Wl,--no-whole-archive -lpython$(PY_VERSION)m libsdbf.a -o swig/python/_sdbf_class.so -lcrypto -lpthread 
 
 sdbf.i:
 
