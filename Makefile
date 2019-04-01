@@ -72,7 +72,7 @@ swig-win-py: boost swig/python/sdbf_wrap.o swig/python/_sdbf_class.dll
 
 swig/python/sdbf_wrap.o: sdbf.i $(LIBSDBF)
 	swig -c++ -python swig/python/sdbf.i
-	g++ -std=c++0x -fPIC -c swig/python/sdbf_wrap.cxx -o swig/python/sdbf_wrap.o -I/usr/include/python$(PY_VERSION)
+	g++ -std=c++0x -fPIC -c swig/python/sdbf_wrap.cxx -o swig/python/sdbf_wrap.o -I/usr/include/python$(PY_VERSION) -I./external
 
 swig/python/_sdbf_class.so: swig/python/sdbf_wrap.o $(LIBSDBF)
 	g++ -shared swig/python/sdbf_wrap.o -fopenmp -L./external/stage/lib -Wl,--whole-archive -lboost_system -lboost_filesystem -lboost_thread -Wl,--no-whole-archive -lpython$(PY_VERSION)m libsdbf.a -o swig/python/_sdbf_class.so -lcrypto -lpthread 
