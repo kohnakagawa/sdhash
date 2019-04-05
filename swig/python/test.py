@@ -4,8 +4,8 @@
 import sdbf_class
 
 # Name a few standalone objects to hash
-name1 = "test1.txt"
-name2 = "test2.txt"
+name1 = b"hoge.txt"
+name2 = b"test2.txt"
 
 # Create new objects from these names, in "regular" non-block mode.
 test1 = sdbf_class.sdbf(name1, 0)
@@ -33,7 +33,7 @@ score = test2.compare(test1,0)
 print(name1, " vs ", name2, ": ", score)
 
 # Block mode test:
-name3 = "test3.txt"
+name3 = b"test3.txt"
 # Note that creating this object you must give the "real size" of the block
 test3 = sdbf_class.sdbf(name3,16*1024)
 
@@ -41,16 +41,17 @@ test3 = sdbf_class.sdbf(name3,16*1024)
 print(test3.name())
 
 # Displays block-mode sdbf
-#print test3.tostring(); // still working on these two
-#print test3;
+# print test3.tostring(); // still working on these two
+# print test3;
 print(test3.to_string())
 
 # This needs to be filled with an existing test file... 
-#myfile = sdbf_class.fopen("/home/candice/serverhome/newKitty.sdbf","r")
+# myfile = sdbf_class.fopen("/home/candice/serverhome/newKitty.sdbf","r")
 # add  in a loop here.
-#test4= sdbf_class.sdbf(myfile);
+# test4= sdbf_class.sdbf(myfile);
 
-#print test4.get_name()
-#test4.print_sdbf(test4)
+# print test4.get_name()
+# test4.print_sdbf(test4)
 
-#sdbf_class.fclose(myfile)
+# sdbf_class.fclose(myfile)
+

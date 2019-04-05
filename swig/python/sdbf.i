@@ -20,6 +20,15 @@ typedef int int32_t;
 typedef unsigned long int uint64_t;
 typedef long int int64_t;
 
+%exception {
+    try {
+      $function
+    } catch (int) {
+      PyErr_SetString(PyExc_ValueError, "error occurs in sdhash");
+      return NULL;
+    }
+}
+
 
 class sdbf_conf {
 
